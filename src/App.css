@@ -1,1 +1,14 @@
 @import "tailwindcss";
+
+:root { 
+  --logo-color: #8338ec;
+}
+
+@font-face {
+  font-family: FredokaOne;
+  src: url(../public/fredoka-one/FredokaOne-Regular.ttf)
+}
+
+.FredokaOne{
+  font-family: FredokaOne;
+}

@@ -1,11 +1,8 @@
 import "./App.css";
+import { Logo } from "./header/logo";
 
 function App() {
-	return (
-		<h1 className="text-20xl font-bold underline text-green-700">
-			Hello world!
-		</h1>
-	);
+	return <Logo />;
 }
 
 export default App;
