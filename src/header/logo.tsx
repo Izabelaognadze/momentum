@@ -1,10 +1,10 @@
 export function Logo() {
 	return (
-		<div>
-			<h1 className="FredokaOne text-[31px] capitalize color-[#8338ec]">
+		<div className="flex gap-1 ">
+			<h1 className="FredokaOne text-[31px] capitalize text-[#8338ec]">
 				momentum
 			</h1>
-			{/* <img src="assets/logo-clock.svg" alt="" /> */}
+			<img src="./src/assets/logo-clock.svg" alt="clock for logo" />
 		</div>
 	);
 }
