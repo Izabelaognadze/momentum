@@ -1,8 +1,8 @@
 import "./App.css";
-import { Logo } from "./header/logo";
+import { Header } from "./header/header";
 
 function App() {
-	return <Logo />;
+	return <Header />;
 }
 
 export default App;

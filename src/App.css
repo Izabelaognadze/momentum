@@ -12,3 +12,12 @@
 .FredokaOne{
   font-family: FredokaOne;
 }
+
+@font-face {
+  font-family: FiraGO;
+  src: url(../public/FiraGO_OTF_1001/Roman/FiraGO-Medium.otf)
+}
+
+.FiraGO {
+  font-family: FiraGO
+}
