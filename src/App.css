@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root { 
-  --logo-color: #8338ec;
+  --padding-x: 120px;
 }
 
 @font-face {

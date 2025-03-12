@@ -4,7 +4,7 @@ import { Logo } from "./logo";
 
 export function Header() {
 	return (
-		<div className="flex justify-between items-center py-[31px] px-[120px]">
+		<div className="flex justify-between items-center py-[31px] px-[var(--padding-x)]">
 			<Logo />
 			<div className="flex gap-10">
 				<CreateUser />
