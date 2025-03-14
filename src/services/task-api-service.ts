@@ -1,8 +1,9 @@
+import { PATHS } from "../constants";
 import type { Task } from "../types/task";
 import type { ApiService } from "./api-service";
 
 export class TaskApiService {
-  private readonly path = "tasks";
+  private readonly path = PATHS.TASKS;
 
   constructor(private apiService: ApiService) {}
 

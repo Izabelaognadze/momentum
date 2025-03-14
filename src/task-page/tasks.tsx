@@ -1,45 +1,24 @@
-import { useEffect, useState } from "react";
-import Axios from "axios";
-
-interface Status {
-	id: number;
-	name: string;
-}
-
-interface Task {
-	name: string;
-	description: string;
-	due_date: string;
-	status: {
-		id: number;
-		name: string;
-	};
-	employee_id: number;
-	priority_id: number;
-}
+import { useQuery } from "@tanstack/react-query";
+import { TaskApiService } from "../services/task-api-service";
+import { ApiService } from "../services/api-service";
+import { StatusApiService } from "../services/status-api-service";
+import { PATHS } from "../constants";
+const taskApiService = new TaskApiService(new ApiService());
+const statusApiService = new StatusApiService(new ApiService());
 
 export function Tasks() {
-	const [statuses, setStatuses] = useState<Status[]>();
-	const [tasks, setTasks] = useState<Task[]>();
-
-	const statusApiUrl = "https://momentum.redberryinternship.ge/api/statuses";
-	const tasksApiUrl = "https://momentum.redberryinternship.ge/api/tasks";
-	const token = "9e6b1a8e-0764-466b-a588-4b980d20bc57";
-
-	useEffect(() => {
-		Axios.get(statusApiUrl, {
-			headers: { Authorization: `Bearer ${token}` },
-		}).then((response) => {
-			setStatuses(response.data);
-		});
-
-		Axios.get(tasksApiUrl, {
-			headers: { Authorization: `Bearer ${token}` },
-		}).then((response) => {
-			setTasks(response.data);
-		});
-	}, []);
-
+	const tasks = useQuery({
+		queryKey: [PATHS.TASKS],
+		queryFn: () => {
+			return taskApiService.getTasks();
+		},
+	});
+	const statuses = useQuery({
+		queryKey: [PATHS.STATUSES],
+		queryFn: () => {
+			return statusApiService.getStatuses();
+		},
+	});
 	if (!statuses || !tasks) return <div>Loading...</div>;
 
 	const bgColors = ["#f7bc30", "#fb5607", "#ff006e", "#3a86ff"];
@@ -48,7 +27,7 @@ export function Tasks() {
 		<div>
 			<div>line</div>
 			<div className="flex gap-[52px] mt-[79px]">
-				{statuses.map((status, index) => (
+				{statuses.data?.map((status, index) => (
 					<div key={status.id} className="w-full">
 						<div
 							className="h-[54px] w-full flex items-center justify-center rounded-[10px] px-4 py-[15px] text-white"
@@ -58,8 +37,8 @@ export function Tasks() {
 						</div>
 
 						<div className="mt-4 space-y-2">
-							{tasks
-								.filter((task) => task.status.id === status.id)
+							{tasks.data
+								?.filter((task) => task.status.id === status.id)
 								.map((task) => (
 									<div
 										key={task.name}
