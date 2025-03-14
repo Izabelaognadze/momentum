@@ -1,48 +1,81 @@
 import { useEffect, useState } from "react";
 import Axios from "axios";
+
 interface Status {
-  id: number;
-  name: string;
+	id: number;
+	name: string;
+}
+
+interface Task {
+	name: string;
+	description: string;
+	due_date: string;
+	status: {
+		id: number;
+		name: string;
+	};
+	employee_id: number;
+	priority_id: number;
 }
 
 export function Tasks() {
-  const [data, setData] = useState<Status[] | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const statusApiUrl = "https://momentum.redberryinternship.ge/api/statuses";
-  const token = "9e6b1a8e-0764-466b-a588-4b980d20bc57";
+	const [statuses, setStatuses] = useState<Status[]>();
+	const [tasks, setTasks] = useState<Task[]>();
 
-  useEffect(() => {
-    Axios.get(statusApiUrl, { headers: { Authorization: `Bearer ${token}` } })
-      .then((response) => {
-        console.log("API Response:", response);
-        setData(response.data);
-      })
-      .catch((err) => {
-        console.error("API Error:", err);
-        setError(err.message);
-      });
-  }, []);
+	const statusApiUrl = "https://momentum.redberryinternship.ge/api/statuses";
+	const tasksApiUrl = "https://momentum.redberryinternship.ge/api/tasks";
+	const token = "9e6b1a8e-0764-466b-a588-4b980d20bc57";
 
-  if (error) return <div>Error: {error}</div>;
-  if (!data) return <div>Loading...</div>;
+	useEffect(() => {
+		Axios.get(statusApiUrl, {
+			headers: { Authorization: `Bearer ${token}` },
+		}).then((response) => {
+			setStatuses(response.data);
+		});
 
-  return (
-    <div>
-      <div>line</div>
-      <div className="flex gap-[52px] mt-[79px]">
-        {data.map((status, index) => {
-          const bgColors = ["#f7bc30", "#fb5607", "#ff006e", "#3a86ff"];
-          return (
-            <div
-              key={status.id}
-              className={`h-[54px] w-full flex items-center justify-center rounded-[10px] px-4 py-[15px] text-white`}
-              style={{ backgroundColor: bgColors[index] }}
-            >
-              {status.name}
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
+		Axios.get(tasksApiUrl, {
+			headers: { Authorization: `Bearer ${token}` },
+		}).then((response) => {
+			setTasks(response.data);
+		});
+	}, []);
+
+	if (!statuses || !tasks) return <div>Loading...</div>;
+
+	const bgColors = ["#f7bc30", "#fb5607", "#ff006e", "#3a86ff"];
+
+	return (
+		<div>
+			<div>line</div>
+			<div className="flex gap-[52px] mt-[79px]">
+				{statuses.map((status, index) => (
+					<div key={status.id} className="w-full">
+						<div
+							className="h-[54px] w-full flex items-center justify-center rounded-[10px] px-4 py-[15px] text-white"
+							style={{ backgroundColor: bgColors[index] }}
+						>
+							{status.name}
+						</div>
+
+						<div className="mt-4 space-y-2">
+							{tasks
+								.filter((task) => task.status.id === status.id)
+								.map((task) => (
+									<div
+										key={task.name}
+										className="bg-gray-100 p-4 rounded-lg shadow-md text-black"
+									>
+										<h3 className="font-semibold">{task.name}</h3>
+										<p className="text-sm">{task.description}</p>
+										<p className="text-xs text-gray-500">
+											Due Date: {task.due_date}
+										</p>
+									</div>
+								))}
+						</div>
+					</div>
+				))}
+			</div>
+		</div>
+	);
 }
