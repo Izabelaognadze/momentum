@@ -21,3 +21,12 @@
 .FiraGO {
   font-family: FiraGO
 }
+
+@font-face {
+  font-family: FiraGO;
+  src: url(../public/FiraGO_OTF_1001/Roman/FiraGO-Bold.otf)
+}
+
+.FiraGOBold {
+  font-family: FiraGO
+}

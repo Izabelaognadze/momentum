@@ -1,24 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
-import { TaskApiService } from "../services/task-api-service";
-import { ApiService } from "../services/api-service";
-import { StatusApiService } from "../services/status-api-service";
 import { PATHS } from "../constants";
-const taskApiService = new TaskApiService(new ApiService());
-const statusApiService = new StatusApiService(new ApiService());
+import { PriorityButton } from "../components/priority-button";
+import { statusApiService, taskApiService } from "../services/instances";
 
 export function Tasks() {
+
 	const tasks = useQuery({
 		queryKey: [PATHS.TASKS],
 		queryFn: () => {
 			return taskApiService.getTasks();
 		},
 	});
+
 	const statuses = useQuery({
 		queryKey: [PATHS.STATUSES],
 		queryFn: () => {
 			return statusApiService.getStatuses();
 		},
 	});
+
 	if (!statuses || !tasks) return <div>Loading...</div>;
 
 	const bgColors = ["#f7bc30", "#fb5607", "#ff006e", "#3a86ff"];
@@ -44,11 +44,13 @@ export function Tasks() {
 										key={task.name}
 										className="bg-gray-100 p-4 rounded-lg shadow-md text-black"
 									>
+									
 										<h3 className="font-semibold">{task.name}</h3>
 										<p className="text-sm">{task.description}</p>
 										<p className="text-xs text-gray-500">
 											Due Date: {task.due_date}
 										</p>
+										<PriorityButton id={task.priority.id} />
 									</div>
 								))}
 						</div>
