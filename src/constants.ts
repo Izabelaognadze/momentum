@@ -8,7 +8,7 @@ export const PATHS = {
 } as const;
 
 export const PRIORITIES: Record<number, string> = {
-  1: "#08a508", 
-  2: "#ffbe0b", 
+  1: "#08a508",
+  2: "#ffbe0b",
   3: "#fa4d4d",
 };
