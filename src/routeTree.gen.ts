@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as CreateTaskImport } from './routes/create-task'
 import { Route as IndexImport } from './routes/index'
+import { Route as TasksIdImport } from './routes/tasks.$id'
 
 // Create/Update Routes
 
@@ -25,6 +26,12 @@ const CreateTaskRoute = CreateTaskImport.update({
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TasksIdRoute = TasksIdImport.update({
+  id: '/tasks/$id',
+  path: '/tasks/$id',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,6 +53,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreateTaskImport
       parentRoute: typeof rootRoute
     }
+    '/tasks/$id': {
+      id: '/tasks/$id'
+      path: '/tasks/$id'
+      fullPath: '/tasks/$id'
+      preLoaderRoute: typeof TasksIdImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -54,36 +68,41 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/create-task': typeof CreateTaskRoute
+  '/tasks/$id': typeof TasksIdRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/create-task': typeof CreateTaskRoute
+  '/tasks/$id': typeof TasksIdRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/create-task': typeof CreateTaskRoute
+  '/tasks/$id': typeof TasksIdRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/create-task'
+  fullPaths: '/' | '/create-task' | '/tasks/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/create-task'
-  id: '__root__' | '/' | '/create-task'
+  to: '/' | '/create-task' | '/tasks/$id'
+  id: '__root__' | '/' | '/create-task' | '/tasks/$id'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CreateTaskRoute: typeof CreateTaskRoute
+  TasksIdRoute: typeof TasksIdRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CreateTaskRoute: CreateTaskRoute,
+  TasksIdRoute: TasksIdRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,7 +116,8 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/create-task"
+        "/create-task",
+        "/tasks/$id"
       ]
     },
     "/": {
@@ -105,6 +125,9 @@ export const routeTree = rootRoute
     },
     "/create-task": {
       "filePath": "create-task.tsx"
+    },
+    "/tasks/$id": {
+      "filePath": "tasks.$id.tsx"
     }
   }
 }

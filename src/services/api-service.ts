@@ -24,4 +24,15 @@ export class ApiService {
       })
     ).data;
   }
+
+  public async sendPutRequest<ResponseType>(
+    path: string,
+    body: unknown
+  ): Promise<ResponseType> {
+    return (
+      await axios.put(`${this.baseUrl}/${path}`, body, {
+        headers: { Authorization: `Bearer ${this.authToken}` },
+      })
+    ).data;
+  }
 }

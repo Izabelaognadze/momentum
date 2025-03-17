@@ -5,6 +5,7 @@ import { statusApiService, taskApiService } from "../services/instances";
 import { formatGeorgianDate } from "../functions/formatGeorgianDate";
 import commentsIcon from "../assets/comments.svg";
 import { Departments } from "./departments";
+import { Link } from "@tanstack/react-router";
 
 export function Tasks() {
   const tasks = useQuery({
@@ -38,11 +39,13 @@ export function Tasks() {
               {status.name}
             </div>
 
-            <div className="flex flex-col gap-[30px] mt-[30px]">
+            <div className="flex flex-col gap-[30px] my-[30px] cursor-pointer">
               {tasks.data
                 ?.filter((task) => task.status.id === status.id)
                 .map((task) => (
-                  <div
+                  <Link
+                    to={"/tasks/$id"}
+                    params={{ id: String(task.id) }}
                     key={task.id}
                     className="flex flex-col gap-7 p-5 rounded-[15px] border border-[#f7bc30] bg-white"
                   >
@@ -76,7 +79,7 @@ export function Tasks() {
                         <p>{task.total_comments}</p>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 ))}
             </div>
           </div>

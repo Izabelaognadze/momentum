@@ -9,6 +9,10 @@
   --darkGray: #343a40;
 }
 
+@theme {
+  --font-firago: "FiraGo"
+}
+
 @font-face {
   font-family: FredokaOne;
   src: url(../public/fredoka-one/FredokaOne-Regular.ttf)
@@ -23,7 +27,7 @@
   src: url(../public/FiraGO_OTF_1001/Roman/FiraGO-Medium.otf)
 }
 
-.FiraGO {
+. {
   font-family: FiraGO
 }
 
