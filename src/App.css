@@ -2,6 +2,11 @@
 
 :root { 
   --padding-x: 120px;
+  --green: #08a508;
+  --yellow: #ffbe0b;
+  --red: #fa4d4d;
+  --primaryDark: #212529;
+  --darkGray: #343a40;
 }
 
 @font-face {

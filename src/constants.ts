@@ -7,8 +7,8 @@ export const PATHS = {
   TASKS: "tasks",
 } as const;
 
-export const PRIORITIES: Record<number, string> = {
-  1: "#08a508",
-  2: "#ffbe0b",
-  3: "#fa4d4d",
+export const PRIORITIES: Record<string, string> = {
+  1: "var(--green)",
+  2: "var(--yellow)",
+  3: "var(--red)",
 };
