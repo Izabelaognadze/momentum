@@ -4,6 +4,7 @@ import { PriorityButton } from "./priority-button";
 import { statusApiService, taskApiService } from "../services/instances";
 import { formatGeorgianDate } from "../functions/formatGeorgianDate";
 import commentsIcon from "../assets/comments.svg";
+import { Departments } from "./departments";
 
 export function Tasks() {
   const tasks = useQuery({
@@ -48,8 +49,7 @@ export function Tasks() {
                     <div className="flex justify-between items-center">
                       <div className="flex gap-[10px]">
                         <PriorityButton id={task.priority.id} />
-                        <p>text</p>
-                        {/*toFix*/}
+                        <Departments id={task.department.id} />
                       </div>
                       <p className="text-[12px] text-[var(--primaryDark)]">
                         {formatGeorgianDate(task.due_date)}
