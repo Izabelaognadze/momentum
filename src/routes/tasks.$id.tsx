@@ -5,6 +5,7 @@ import { taskApiService } from "../services/instances";
 import { useQuery } from "@tanstack/react-query";
 import { PriorityButton } from "../components/priority-button";
 import { Departments } from "../components/departments";
+import { TaskStatusDropdown } from "../components/task-status-dropdown";
 
 export const Route = createFileRoute("/tasks/$id")({
   component: RouteComponent,
@@ -46,6 +47,7 @@ function RouteComponent() {
           <h3 className="text-[24px] font-medium leading-normal tracking-normal text-left text-[#2a2a2a]">
             დავალების დეტალები
           </h3>
+          <TaskStatusDropdown task={task} />
         </div>
       </div>
 

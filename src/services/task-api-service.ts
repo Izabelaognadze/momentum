@@ -21,6 +21,8 @@ export class TaskApiService {
   }
 
   public changeTaskStatus(id: number, status: Status): Promise<Task> {
-    return this.apiService.sendPutRequest<Task>(`${this.path}/${id}`, { status });
+    return this.apiService.sendPutRequest<Task>(`${this.path}/${id}`, {
+      status_id: status.id,
+    });
   }
 }
