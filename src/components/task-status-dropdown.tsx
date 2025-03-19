@@ -17,7 +17,9 @@ export function TaskStatusDropdown({ task }: TaskStatusDropdownProps) {
     error,
   } = useQuery({
     queryKey: [PATHS.STATUSES],
-    queryFn: statusApiService.getStatuses,
+    queryFn: () => {
+      return statusApiService.getStatuses();
+    },
   });
 
   const mutation = useMutation({

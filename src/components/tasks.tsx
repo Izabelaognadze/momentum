@@ -47,7 +47,8 @@ export function Tasks() {
                     to={"/tasks/$id"}
                     params={{ id: String(task.id) }}
                     key={task.id}
-                    className="flex flex-col gap-7 p-5 rounded-[15px] border border-[#f7bc30] bg-white"
+                    className="flex flex-col gap-7 p-5 rounded-[15px] border bg-white"
+                    style={{ borderColor: bgColors[index] }}
                   >
                     <div className="flex justify-between items-center">
                       <div className="flex gap-[10px]">
