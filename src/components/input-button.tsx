@@ -19,7 +19,7 @@ export const InputButton = ({
     useCreateTaskForm();
   return (
     <div>
-      <label className="text-[16px] font-normal leading-normal tracking-normal text-left text-[#343a40] mt-1">
+      <label className="labelStyle">
         {label} {required && <span>*</span>}
       </label>
 
