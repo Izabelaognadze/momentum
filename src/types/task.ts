@@ -14,3 +14,14 @@ export interface Task {
   priority: Priority;
   total_comments: number;
 }
+
+export type CreateTaskForm = Pick<
+  Task,
+  | "name"
+  | "description"
+  | "due_date"
+  | "department"
+  | "employee"
+  | "status"
+  | "priority"
+>;

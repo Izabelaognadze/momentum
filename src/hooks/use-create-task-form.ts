@@ -1,15 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useCallback, useMemo } from "react";
+import { taskApiService } from "../services/instances";
+import { CreateTaskForm } from "../types/task";
 
-interface CreateTaskForm {
-  name: string;
-  description: string;
-  due_date: Date;
-  department: string;
-  employee: string;
-  status: string;
-  priority: string;
-}
 export const useCreateTaskForm = () => {
   const {
     register,
@@ -19,8 +12,8 @@ export const useCreateTaskForm = () => {
   } = useForm<CreateTaskForm>({ mode: "onChange" });
 
   const registerField = useCallback(
-    (fieldName: keyof CreateTaskForm) =>
-      register(fieldName, {
+    (fieldName: string) =>
+      register(fieldName as keyof CreateTaskForm, {
         required: true,
         minLength: 2,
         maxLength: 255,
@@ -31,7 +24,7 @@ export const useCreateTaskForm = () => {
   const createTask = useCallback(
     (data: CreateTaskForm) => {
       try {
-        console.log(data);
+        taskApiService.postTask(data);
         reset();
       } catch (error) {
         console.error("Error creating task:", error);
