@@ -37,8 +37,8 @@ export const useCreateTaskForm = () => {
     () => handleSubmit(createTask),
     [createTask, handleSubmit]
   );
-  const isNameTouched = dirtyFields.name;
 
+  const isNameTouched = dirtyFields.name;
   const isNameMinLengthError =
     isSubmitted || isNameTouched
       ? errors.name?.type === "minLength" || errors.name?.type === "required"
@@ -48,10 +48,22 @@ export const useCreateTaskForm = () => {
       ? errors.name?.type === "maxLength" || errors.name?.type === "required"
       : undefined;
 
+  const isDescriptionTouched = dirtyFields.description;
+  const isDescriptionMinLengthError =
+    isSubmitted || isDescriptionTouched
+      ? errors.name?.type === "minLength" || errors.name?.type === "required"
+      : undefined;
+  const isDescriptionMaxLengthError =
+    isSubmitted || isDescriptionTouched
+      ? errors.name?.type === "maxLength" || errors.name?.type === "required"
+      : undefined;
+
   return {
     registerField,
     onSubmit,
     isNameMinLengthError,
     isNameMaxLengthError,
+    isDescriptionMinLengthError,
+    isDescriptionMaxLengthError,
   };
 };

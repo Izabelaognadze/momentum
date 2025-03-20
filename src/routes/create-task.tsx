@@ -3,6 +3,7 @@ import { useCreateTaskForm } from "../hooks/use-create-task-form";
 import { InputButton } from "../components/input-button";
 import { ListBoxElement } from "../components/list-box-element";
 import { SelectButton } from "../components/select-button";
+import { TextAreaForDescription } from "../components/text-area-for-description";
 
 export const Route = createFileRoute("/create-task")({
   component: CreateTask,
@@ -14,6 +15,8 @@ function CreateTask() {
     registerField,
     isNameMaxLengthError,
     isNameMinLengthError,
+    isDescriptionMinLengthError,
+    isDescriptionMaxLengthError,
   } = useCreateTaskForm();
 
   return (
@@ -32,12 +35,11 @@ function CreateTask() {
             isNameMaxLengthError={isNameMaxLengthError}
             isNameMinLengthError={isNameMinLengthError}
           />
-          {/* <InputButton
-            label="აღწერა"
+          <TextAreaForDescription
             registerProps={registerField("description")}
-            inputHeight="133px"
-            errorMessages
-          /> */}
+            isDescriptionMaxLengthError={isDescriptionMaxLengthError}
+            isDescriptionMinLengthError={isDescriptionMinLengthError}
+          />
           <div className="flex gap-8 justify-between">
             <ListBoxElement />
             <SelectButton labelName="სტატუსი" />
