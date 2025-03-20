@@ -1,11 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useCreateTaskForm } from "../hooks/use-create-task-form";
 import { InputButton } from "../components/input-button";
-import { Select } from "@headlessui/react";
-import { useQuery } from "@tanstack/react-query";
-import { PATHS } from "../constants";
-import { Priority } from "../types/priority";
-import { priorityApiService } from "../services/instances";
+import { ListBoxElement } from "../components/list-box-element";
 
 export const Route = createFileRoute("/create-task")({
   component: CreateTask,
@@ -13,13 +9,6 @@ export const Route = createFileRoute("/create-task")({
 
 function CreateTask() {
   const { onSubmit } = useCreateTaskForm();
-  const { data: priorities } = useQuery<Priority[]>({
-    queryKey: [PATHS.PRIORITIES],
-    queryFn: async () => {
-      const data = await priorityApiService.getPriorities();
-      return Array.isArray(data) ? data : [];
-    },
-  });
 
   return (
     <div className="FiraGO px-[var(--padding-x)]">
@@ -43,7 +32,8 @@ function CreateTask() {
             inputHeight="133px"
             errorMessages
           />
-          <Select
+          <ListBoxElement />
+          {/* <Listbox
             name="priority"
             aria-label="Project priority"
             className="flex flex-row justify-start items-center gap-[6px] p-[14px] rounded-[5px] border border-[#dee2e6] bg-white"
@@ -51,23 +41,25 @@ function CreateTask() {
             <label className="labelStyle">priority</label>
             {priorities && priorities.length > 0 ? (
               priorities.map((priority) => (
-                <option
-                  key={priority.id}
-                  value={priority.id}
-                  className="text-[14px] font-light leading-normal tracking-normal text-left text-[#0d0f10]"
-                >
-                  <img
-                    src={priority.icon}
-                    alt={priority.name}
-                    className="inline-block max-w-[20px] mr-[6px]"
-                  />
-                  {priority.name}
-                </option>
+                <>
+                  <option
+                    key={priority.id}
+                    value={priority.id}
+                    className="text-[14px] font-light leading-normal tracking-normal text-left text-[#0d0f10]"
+                  >
+                    <img
+                      src={priority.icon}
+                      alt={priority.name}
+                      className="min-w-[20px] mr-[6px]"
+                    />
+                    {priority.name}
+                  </option>
+                </>
               ))
             ) : (
               <option disabled>No priorities available</option>
             )}
-          </Select>
+          </Listbox> */}
         </div>
         <button
           type="submit"
