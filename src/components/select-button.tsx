@@ -5,7 +5,7 @@ interface SelectButtonProps {
 }
 export const SelectButton = ({ labelName }: SelectButtonProps) => {
   return (
-    <div className="flex flex-col gap-[6px]">
+    <div className="flex flex-col gap-[6px] w-full">
       <label className="labelStyle mt-0">{labelName}</label>
       <Select
         name="dfs"

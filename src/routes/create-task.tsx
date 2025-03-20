@@ -25,7 +25,11 @@ function CreateTask() {
         შექმენი ახალი დავალება
       </h1>
       <form
-        onSubmit={onSubmit}
+        onSubmit={(e) => {
+          e.preventDefault();
+          console.log("Form submitted!");
+          onSubmit();
+        }}
         className="flex justify-between  w-full p-[65px_368px_216px_55px] border-[0.3px] border-[#ddd2ff] bg-[rgba(251,249,255,0.65)] rounded-[4px] mb-12"
       >
         <div className="flex gap-[87px] flex-col w-[550px]">
@@ -40,8 +44,8 @@ function CreateTask() {
             isDescriptionMaxLengthError={isDescriptionMaxLengthError}
             isDescriptionMinLengthError={isDescriptionMinLengthError}
           />
-          <div className="flex gap-8 justify-between">
-            <ListBoxElement />
+          <div className="flex gap-8 justify-between w-full">
+            <ListBoxElement registerProps={registerField("priority")} />
             <SelectButton labelName="სტატუსი" />
           </div>
         </div>

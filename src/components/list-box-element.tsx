@@ -11,8 +11,13 @@ import { PATHS } from "../constants";
 import { priorityApiService } from "../services/instances";
 import { useQuery } from "@tanstack/react-query";
 import { Priority } from "../types/priority";
+import { UseFormRegisterReturn } from "react-hook-form";
 
-export function ListBoxElement() {
+type ListBoxElementProps = {
+  registerProps: UseFormRegisterReturn;
+};
+
+export function ListBoxElement({ registerProps }: ListBoxElementProps) {
   const {
     data: priorities,
     isLoading,
@@ -40,9 +45,18 @@ export function ListBoxElement() {
   if (isError || !priorities) return <p>Error loading priorities</p>;
 
   return (
-    <Field className="flex flex-col">
+    <Field className="flex flex-col w-full">
       <Label className="labelStyle">პრიორიტეტი *</Label>
       <Listbox value={selectedPriority} onChange={setSelectedPriority}>
+        {/* <Listbox
+        value={selectedPriority}
+        onChange={(priority) => {
+          setSelectedPriority(priority);
+          registerProps?.onChange({
+            target: { value: priority?.id },
+          }); //tofix
+        }}
+      > */}
         <ListboxButton>
           {selectedPriority && (
             <div className="flex justify-between p-[14px] rounded-[5px] border border-[#dee2e6] bg-white">
