@@ -16,13 +16,26 @@ function CreateTask() {
       </h1>
       <form
         onSubmit={onSubmit}
-        className="flex flex-col w-[1684px] h-[958px] 
+        className="flex flex-col w-[1684px] 
   p-[65px_368px_216px_55px] 
    border-[0.3px] border-[#ddd2ff] 
   bg-[rgba(251,249,255,0.65)] 
   rounded-[4px]"
       >
-        <InputButton label="სათაური" required fieldName="name" errorMessages />
+        <div className="flex gap-[87px] flex-col">
+          <InputButton
+            label="სათაური"
+            required
+            fieldName="name"
+            errorMessages
+          />
+          <InputButton
+            label="აღწერა"
+            fieldName="description"
+            inputHeight="133px"
+            errorMessages
+          />
+        </div>
         <button
           type="submit"
           className="bg-blue-500 text-white px-4 py-2 rounded mt-3"

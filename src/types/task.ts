@@ -15,7 +15,7 @@ export interface Task {
   total_comments: number;
 }
 
-export type CreateTaskForm = Pick<
+export type CreateTask = Pick<
   Task,
   | "name"
   | "description"

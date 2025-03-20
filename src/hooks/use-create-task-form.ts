@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useCallback, useMemo } from "react";
 import { taskApiService } from "../services/instances";
-import { CreateTaskForm } from "../types/task";
+import { CreateTask } from "../types/task";
 
 export const useCreateTaskForm = () => {
   const {
@@ -9,11 +9,11 @@ export const useCreateTaskForm = () => {
     handleSubmit,
     reset,
     formState: { errors, isSubmitted, dirtyFields },
-  } = useForm<CreateTaskForm>({ mode: "onChange" });
+  } = useForm<CreateTask>({ mode: "onChange" });
 
   const registerField = useCallback(
     (fieldName: string) =>
-      register(fieldName as keyof CreateTaskForm, {
+      register(fieldName as keyof CreateTask, {
         required: true,
         minLength: 2,
         maxLength: 255,
@@ -22,7 +22,7 @@ export const useCreateTaskForm = () => {
   );
 
   const createTask = useCallback(
-    (data: CreateTaskForm) => {
+    (data: CreateTask) => {
       try {
         taskApiService.postTask(data);
         reset();
