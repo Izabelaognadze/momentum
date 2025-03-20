@@ -48,6 +48,7 @@ function CreateTask() {
             aria-label="Project priority"
             className="flex flex-row justify-start items-center gap-[6px] p-[14px] rounded-[5px] border border-[#dee2e6] bg-white"
           >
+            <label className="labelStyle">priority</label>
             {priorities && priorities.length > 0 ? (
               priorities.map((priority) => (
                 <option
