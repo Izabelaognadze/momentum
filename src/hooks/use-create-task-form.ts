@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { taskApiService } from "../services/instances";
 import { CreateTask } from "../types/task";
 
@@ -32,6 +32,10 @@ export const useCreateTaskForm = () => {
     },
     [reset]
   );
+
+  useEffect(() => {
+    console.log(errors);
+  });
 
   const onSubmit = useMemo(
     () => handleSubmit(createTask),

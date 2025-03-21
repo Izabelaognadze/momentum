@@ -46,16 +46,17 @@ function CreateTask() {
     isDescriptionMaxLengthError,
   } = useCreateTaskForm();
 
+  const handleSubmit = (e: any) => {
+    return onSubmit(e);
+  };
+
   return (
     <div className="FiraGO px-[var(--padding-x)]">
       <h1 className="text-[34px] font-semibold leading-none tracking-normal text-left text-[#212529] mt-10 mb-[25px]">
         შექმენი ახალი დავალება
       </h1>
       <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          onSubmit();
-        }}
+        onSubmit={handleSubmit}
         className="flex justify-between  w-full p-[65px_368px_216px_55px] border-[0.3px] border-[#ddd2ff] bg-[rgba(251,249,255,0.65)] rounded-[4px] mb-12"
       >
         <div className="flex gap-[87px] flex-col w-[550px]">
