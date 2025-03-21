@@ -1,5 +1,5 @@
 import { ApiService } from "./api-service";
-import { DepartmentApiService } from "./departmentApiService";
+import { DepartmentApiService } from "./department-api-service";
 import { EmployeeApiService } from "./employees-api-services";
 import { PriorityApiService } from "./priority.api.service";
 import { StatusApiService } from "./status-api-service";
