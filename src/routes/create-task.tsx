@@ -46,6 +46,7 @@ function CreateTask() {
     isDescriptionMaxLengthError,
   } = useCreateTaskForm();
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSubmit = (e: any) => {
     return onSubmit(e);
   };

@@ -5,16 +5,12 @@ import { useSuspenseQueries } from "@tanstack/react-query";
 import { PriorityButton } from "../components/priority-button";
 import { Departments } from "../components/departments";
 import { TaskStatusDropdown } from "../components/task-status-dropdown";
-import { useState } from "react";
-import { CommentInterface } from "../types/comment";
 
 export const Route = createFileRoute("/tasks/$id")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const [replyingTo, setReplyingTo] = useState<number | null>(null);
-  const [newComment, setNewComment] = useState("");
   const { id: idString } = Route.useParams();
   const id = Number(idString);
   const taskId = Number();
@@ -37,17 +33,6 @@ function RouteComponent() {
   });
 
   const task = results[1].data;
-  const comments = results[0].data as CommentInterface[];
-
-  const handleReply = (parentId: number) => {
-    setReplyingTo(parentId);
-  };
-
-  const handlePostComment = () => {
-    console.log("Posting comment:", newComment);
-    setNewComment("");
-    setReplyingTo(null);
-  };
 
   return (
     <div className="flex justify-between FiraGO px-[var(--padding-x)] mt-10">
