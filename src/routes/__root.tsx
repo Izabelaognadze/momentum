@@ -12,7 +12,7 @@ export const Route = createRootRoute({
         </Link>{" "}
         <div className="flex gap-10">
           <CreateUser />
-          <Link to="/create-task" className="[&.active]:font-bold">
+          <Link to="/create-task">
             <CreateTask />
           </Link>
         </div>

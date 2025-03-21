@@ -4,6 +4,7 @@ import { InputButton } from "../components/input-button";
 import { ListBoxElement } from "../components/list-box-element";
 import { SelectButton } from "../components/select-button";
 import { TextAreaForDescription } from "../components/text-area-for-description";
+import { DatePickerField } from "../components/date-picker";
 
 export const Route = createFileRoute("/create-task")({
   component: CreateTask,
@@ -52,12 +53,16 @@ function CreateTask() {
 
         <div className="flex gap-[87px] flex-col w-[550px]">
           <SelectButton labelName="დეპარტამენტი" />
-          <button
-            type="submit"
-            className="bg-blue-500 text-white px-4 py-2 rounded mt-3"
-          >
-            submit
-          </button>
+          <SelectButton labelName="  პასუხისმგებელი თანამშრომელი" />
+          <DatePickerField registerProps={registerField("due_date")} />
+          <div className="flex justify-end">
+            <button
+              type="submit"
+              className="w-[208px] h-[42px] flex flex-row justify-center items-center gap-[4px] px-[20px] py-[10px] rounded-[5px] text-white bg-[#8338ec] hover:bg-[#B588F4]"
+            >
+              დავალების შექმნა
+            </button>
+          </div>
         </div>
       </form>
     </div>
