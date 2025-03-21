@@ -5,7 +5,7 @@ import { routeTree } from "./routeTree.gen";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
-const router = createRouter({ routeTree });
+const router = createRouter({ routeTree, basepath: "/momentum" });
 
 declare module "@tanstack/react-router" {
   interface Register {
