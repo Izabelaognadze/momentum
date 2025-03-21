@@ -10,5 +10,5 @@ export default defineConfig({
     tailwindcss(),
     react(),
   ],
-  base: "//momentum",
+  base: "/momentum/",
 });
