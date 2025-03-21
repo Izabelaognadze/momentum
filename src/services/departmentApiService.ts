@@ -6,7 +6,7 @@ export class DepartmentApiService {
   private readonly path = PATHS.DEPARTMENTS;
   constructor(private apiService: ApiService) {}
 
-  public getDepartments(): Promise<Department> {
-    return this.apiService.sendGetRequest<Department>(`${this.path}`);
+  public getDepartments(): Promise<Department[]> {
+    return this.apiService.sendGetRequest<Department[]>(`${this.path}`);
   }
 }
